@@ -18,7 +18,7 @@ modules:
         SPRING_PROFILES_ACTIVE: cloud,sandbox
         JBP_CONFIG_COMPONENTS: "jres: ['com.sap.xs.java.buildpack.jre.SAPMachineJRE']"
         JBP_CONFIG_SAP_MACHINE_JRE: '{ version: 17.+ }'
-        REPOSITORY_ID: SAMPLE-REPO
+        REPOSITORY_ID: 0e9661b5-e418-4d57-9f3c-37d0645814e4
     build-parameters:
       builder: custom
       commands:
@@ -28,7 +28,7 @@ modules:
       - name: demoappjava-hdi-container
       - name: demoappjava-public-uaa
       - name: cf-logging
-      - name: sdm
+      - name: dms-service
     provides:
       - name: srv-api
         properties:
@@ -95,8 +95,8 @@ resources:
     parameters:
       service: application-logs
       service-plan: lite
-  - name: sdm
+  - name: dms-service
     type: org.cloudfoundry.managed-service
     parameters:
       service: sdm
-      service-plan: standard
+      service-plan: free

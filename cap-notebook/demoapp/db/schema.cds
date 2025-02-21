@@ -5,6 +5,11 @@ using {
   sap.common.CodeList
 } from '@sap/cds/common';
 
+using {
+  sap.attachments.Attachments,
+  sap.attachments.StatusCode
+} from`../srv/target/cds/com.sap.cds/sdm`;
+
 namespace sap.capire.bookshop;
 
 entity Books : managed, cuid {

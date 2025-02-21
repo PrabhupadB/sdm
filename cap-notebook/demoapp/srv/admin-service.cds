@@ -1,6 +1,14 @@
 using {sap.capire.bookshop as my} from '../db/schema';
 
 service AdminService @(requires: 'admin') {
-  entity Books   as projection on my.Books;
-  entity Authors as projection on my.Authors;
+  @cds.redirection.target: true
+  entity Books @(restrict: [{
+    grant: ['*'],
+    to   : ['admin']
+  }]) as projection on my.Books;
+
+  entity Authors @(restrict: [{
+    grant: ['*'],
+    to   : ['admin']
+  }]) as projection on my.Authors;
 }
