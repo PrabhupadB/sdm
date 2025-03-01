@@ -22,6 +22,18 @@ service CatalogService {
       modifiedBy
     };
 
+  @readonly
+  entity Attachments as
+    projection on my.Books.attachments {
+      *,
+      book.title as fileName
+    }
+
+    excluding {
+      createdBy,
+      modifiedBy
+    };
+
   action submitOrder(book : Books:ID, quantity : Integer) returns {
     stock : Integer
   };

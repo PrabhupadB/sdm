@@ -10,6 +10,7 @@ using {
   sap.attachments.StatusCode
 } from`../srv/target/cds/com.sap.cds/sdm`;
 
+
 namespace sap.capire.bookshop;
 
 entity Books : managed, cuid {
@@ -21,6 +22,21 @@ entity Books : managed, cuid {
   price             : Decimal;
   currency          : Currency;
   image             : LargeBinary @Core.MediaType: 'image/png';
+}
+
+entity Statuses @cds.autoexpose @readonly {
+  key code : StatusCode;
+      text : localized String(255);
+}
+
+extend Attachments with {
+  statusText : Association to Statuses
+                 on statusText.code = $self.status;
+  book       : Association to Books;
+}
+
+extend entity Books with {
+  attachments : Composition of many Attachments;
 }
 
 entity Authors : managed, cuid {
